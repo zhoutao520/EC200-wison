@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/common.js"></script>
+    <script>
+        document.write("<script src='"+alifont+"'><\/script>");
+    </script>
+    <link rel="stylesheet" media="screen" href="plugins/element.css" />
+    <link rel="stylesheet" media="screen" href="css/base.css" />
+    <link rel="stylesheet" media="screen" href="css/energymanage.css" />
+</head>
+<body>
+    <div id="load">
+        <div class="overlay">
+            <i>
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jiazaizhong"></use>
+                </svg>
+            </i>
+            <span>加载中，请稍等片刻</span>
+        </div>
+    </div>
+    <div id="app">
+        <header :class="isCollapse?'small-w':'big-w'">
+            <el-row>
+                <el-col class="left" :span="12">
+                    <i class="el-icon-menu" @click="isCollapse=!isCollapse"></i>
+                    <span>伊塔全生命周期科技设施与能源管理系统</span>
+                </el-col>
+                <el-col class="right" :span="6" :offset="6">
+                    <img src="img/user.jpg" alt="">
+                    <span>管理员</span>
+                </el-col>
+            </el-row>
+        </header>
+        <aside :class="isCollapse?'small':'big'">
+            <el-menu :default-active="type"
+                class="el-menu-vertical-demo"
+                :collapse="isCollapse"
+                background-color="#424d58"
+                text-color="#fff"
+                active-text-color="#ffd04b">
+                <el-menu-item index="5">
+                    <img src="img/logo.png" alt="">
+                </el-menu-item>
+                <el-menu-item index="6" style="padding:0">
+                    <img src="img/user.jpg" alt="">
+                    <p slot="title">
+                        <span>当前用户：管理员</span><br>
+                        <span>时间：{{nowTime}}</span>
+                    </p>
+                </el-menu-item>
+                <a href="index.html"><el-menu-item index="1">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-shouye1"></use>
+                        </svg>
+                    </i>
+                    <span slot="title">首页</span>
+                </el-menu-item></a>
+                <el-submenu index="2">
+                    <template slot="title">
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xinnengyuan"></use>
+                            </svg>
+                        </i>
+                        <span slot="title">能源运营</span>
+                    </template>
+                    <el-menu-item-group>
+                        <a href="energyOperation.html#freezing"><el-menu-item index="2-1">制冷系统</el-menu-item></a>
+                        <a href="energyOperation.html#boiler"><el-menu-item index="2-2">供热系统</el-menu-item></a>
+                        <a href="energyOperation.html#board"><el-menu-item index="2-3">板换机组</el-menu-item></a>
+                        <a href="energyOperation.html#freshAir"><el-menu-item index="2-4">新风机组</el-menu-item></a>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="3">
+                    <template slot="title">
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-nengyuanguanli"></use>
+                            </svg>
+                        </i>
+                        <span slot="title">能源管理</span>
+                    </template> 
+                    <el-menu-item-group>
+                        <a href="monitoring.html"><el-menu-item index="3-1">在线监测</el-menu-item></a>
+                        <a href="dataCenter.html"><el-menu-item index="3-2">数据中心</el-menu-item></a>
+                        <a href="analysis.html"><el-menu-item index="3-3">节能分析</el-menu-item></a>
+                    </el-menu-item-group>
+                </el-submenu>
+                <a href="facilities.html"><el-menu-item index="5">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-navicon-kctz"></use>
+                        </svg>
+                    </i>
+                    <span slot="title">设备台账</span>
+                </el-menu-item></a>
+            </el-menu>
+        </aside>
+        <main :class="isCollapse?'small-w':'big-w'">
+            <section class="content-header">
+                <iframe allowtransparency="true" frameborder="0" width="220" height="98" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=1&v=0&d=1&bd=0&k=&f=ffffff&ltf=009944&htf=cc0000&q=1&e=0&a=0&c=58362&w=255&h=98&align=center"></iframe>               
+                <div class="chart">
+                    <div id="forecast"></div>
+                    <div id="temChart"></div>
+                </div>
+            </section>
+            <section class="content">
+                <div id="analysisHeat"></div>
+                <!-- <div class="data-select">
+                    <template>
+                        <div class="block">
+                            <span class="demonstration">日期</span>
+                            <el-date-picker
+                                v-model="time2"
+                                type="daterange"
+                                align="right"
+                                unlink-panels
+                                :default-value="time"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :picker-options="pickerOptions2">
+                            </el-date-picker>
+                        </div>
+                        <el-button @click="search" type="primary" :loading="loading" v-text="loading?'加载中':'查询'">加载中</el-button>
+                    </template>
+                </div>
+                <div class="energy-chart">
+                    <div class="type analysis">
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-shandian"></use>
+                            </svg>
+                        </i>
+                        <h4 class="electric">电</h4>
+                        <div class="chartType" id="analysisElectric"></div>
+                    </div>
+                    <div class="type analysis">
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-remen"></use>
+                            </svg>
+                        </i>
+                        <h4 class="heat">供热量</h4>
+                        <div class="chartType" id="analysisHeat"></div>
+                    </div>
+                    <div class="type analysis">
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-cold"></use>
+                            </svg>
+                        </i>
+                        <h4 class="cold">制冷量</h4>
+                        <div class="chartType" id="analysisCold"></div>
+                    </div>
+                </div> -->
+            </section>
+        </main>
+    </div>
+    <script src="plugins/vue.js"></script>
+    <script src="plugins/element.js"></script>
+    <script src="plugins/axios.min.js"></script>
+    <script src="plugins/echarts.min.js"></script>
+    <script src="http://tianqi.2345.com/t/wea_hour_js/58362.js"></script>
+    <script>
+         var wea_h_hour;
+        document.write("<script src='js/analysis.js?time="+new Date().getTime()+"'><\/script>");
+    </script>
+</body>
+</html>

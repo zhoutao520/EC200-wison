@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    <script src="js/common.js"></script>
+    <link rel="stylesheet" media="screen" href="css/base.css" />
+    <link rel="stylesheet" media="screen" href="css/login.css" />
+</head>
+<body>
+    <div id="app">
+        <div class="box">
+            <h1>Login</h1>
+            <div class="login">
+                <label for="user">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-yonghu"></use>
+                        </svg>
+                    </i>
+                    <input id="user" v-model="user" type="text">
+                </label>
+                <label for="password">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-mima"></use>
+                        </svg>
+                    </i>
+                    <input id="password" v-model="password" type="password" @keyup.enter="login">
+                </label>
+                <p v-show="msg!=''" class="msg">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-cancel"></use>
+                        </svg>
+                    </i>
+                    <span v-text="msg"></span> 
+                </p>
+            </div>
+            <button @click="login">Login</button>
+        </div>
+    </div>
+    <script>
+        document.write("<script src='"+alifont+"'><\/script>");
+    </script>
+    <script src="plugins/vue.js"></script>
+    <script src="plugins/axios.min.js"></script>
+    <script>
+        document.write("<script src='js/login.js?time="+new Date().getTime()+"'><\/script>");
+    </script>
+</body>
+</html>

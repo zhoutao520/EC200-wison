@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/common.js"></script>
+    <script>
+        document.write("<script src='"+alifont+"'><\/script>");
+    </script>
+    <link rel="stylesheet" media="screen" href="plugins/element.css" />
+    <link rel="stylesheet" media="screen" href="css/base.css" />
+    <link rel="stylesheet" media="screen" href="css/warning.css" />
+</head>
+<body>
+    <div id="load">
+        <div class="overlay">
+            <i>
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jiazaizhong"></use>
+                </svg>
+            </i>
+            <span>加载中，请稍等片刻</span>
+        </div>
+    </div>
+    <div id="app">
+        <header :class="isCollapse?'small-w':'big-w'">
+            <el-row>
+                <el-col class="left" :span="12">
+                    <i class="el-icon-menu" @click="isCollapse=!isCollapse"></i>
+                    <span>伊塔全生命周期科技设施与能源管理系统</span>
+                </el-col>
+                <el-col class="right" :span="6" :offset="6">
+                    <img src="img/user.jpg" alt="">
+                    <span>管理员</span>
+                </el-col>
+            </el-row>
+        </header>
+        <aside :class="isCollapse?'small':'big'">
+            <el-menu :default-active="type"
+                class="el-menu-vertical-demo"
+                :collapse="isCollapse"
+                background-color="#424d58"
+                text-color="#fff"
+                active-text-color="#ffd04b">
+                <el-menu-item index="5">
+                    <img src="img/logo.png" alt="">
+                </el-menu-item>
+                <el-menu-item index="6" style="padding:0">
+                    <img src="img/user.jpg" alt="">
+                    <p slot="title">
+                        <span>当前用户：管理员</span><br>
+                        <span>时间：{{nowTime}}</span>
+                    </p>
+                </el-menu-item>
+                <a href="index.html"><el-menu-item index="1">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-shouye1"></use>
+                        </svg>
+                    </i>
+                    <span slot="title">首页</span>
+                </el-menu-item></a>
+                <el-submenu index="2">
+                    <template slot="title">
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xinnengyuan"></use>
+                            </svg>
+                        </i>
+                        <span slot="title">能源运营</span>
+                    </template>
+                    <el-menu-item-group>
+                        <a href="energyOperation.html#freezing"><el-menu-item index="2-1">制冷系统</el-menu-item></a>
+                        <a href="energyOperation.html#boiler"><el-menu-item index="2-2">供热系统</el-menu-item></a>
+                        <a href="energyOperation.html#freshAir"><el-menu-item index="2-3">新风机组</el-menu-item></a>
+                        <a href="energyOperation.html#board"><el-menu-item index="2-4">板换机组</el-menu-item></a>
+                    </el-menu-item-group>
+                </el-submenu>
+                <el-submenu index="3">
+                    <template slot="title">
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-nengyuanguanli"></use>
+                            </svg>
+                        </i>
+                        <span slot="title">能源管理</span>
+                    </template> 
+                    <el-menu-item-group>
+                        <a href="monitoring.html"><el-menu-item index="3-1">在线监测</el-menu-item></a>
+                        <a href="dataCenter.html"><el-menu-item index="3-2">数据中心</el-menu-item></a>
+                        <a href="analysis.html"><el-menu-item index="3-3">节能分析</el-menu-item></a>
+                    </el-menu-item-group>
+                </el-submenu>
+                <a href="warning.html"><el-menu-item index="4">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-weibiaoti5"></use>
+                        </svg>
+                    </i>
+                    <span slot="title">预警管理</span>
+                </el-menu-item></a>
+                <a href="facilities.html"><el-menu-item index="5">
+                    <i>
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-navicon-kctz"></use>
+                        </svg>
+                    </i>
+                    <span slot="title">设备台账</span>
+                </el-menu-item></a>
+            </el-menu>
+        </aside>
+        <main :class="isCollapse?'small-w':'big-w'">
+            <section class="content-header">
+                <ol>
+                    <li>
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon-pm"></use>
+                            </svg>
+                        </i> 
+                        PM2.5：<span>{{thp.pm25}}</span>μg/m³</li>
+                    <li>
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-wendu"></use>
+                            </svg>
+                        </i> 
+                        室外温度：<span>{{thp.temperature}}</span>℃</li>
+                    <li>
+                        <i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-shidu"></use>
+                            </svg>
+                        </i> 
+                        室外湿度：<span>{{thp.humidity}}</span>%</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="warning">
+                    <div class="top">
+                        <span>预警级别</span>
+                        <el-select v-model="warinType" placeholder="请选择">
+                            <el-option
+                                v-for="item in options1"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <span>预警状态</span>
+                        <el-select v-model="warinStutas" placeholder="请选择">
+                            <el-option
+                                v-for="item in options2"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <span class="demonstration">日期</span>
+                        <el-date-picker
+                            v-model="time"
+                            type="daterange"
+                            align="right"
+                            unlink-panels
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :picker-options="pickerOptions2">
+                        </el-date-picker>
+                        <el-button @click="search" type="primary" :loading="loading" v-text="loading?'加载中':'查询'">加载中</el-button>
+                    </div>
+                    <div class="chart">
+                        <div id="chartB"></div>
+                        <div id="chartL"></div>
+                    </div>
+                </div>
+                <div class="warning-table">
+                    <el-table
+                    :data="tableData3"
+                    height="270"
+                    border
+                    style="width: 100%">
+                    <el-table-column
+                    type="index">
+                    </el-table-column>
+                    <el-table-column
+                      prop="date"
+                      label="报警时间">
+                    </el-table-column>
+                    <el-table-column
+                      prop="type"
+                      label="报警类型">
+                    </el-table-column>
+                    <el-table-column
+                      prop="name"
+                      label="设备名称">
+                    </el-table-column>
+                    <el-table-column
+                      prop="info"
+                      label="报警信息">
+                    </el-table-column>
+                    <el-table-column
+                      prop="level"
+                      label="报警级别">
+                    </el-table-column>
+                    <el-table-column
+                      prop="status"
+                      label="处理状态">
+                    </el-table-column>
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                          <el-button
+                            size="mini"
+                            @click="handleEdit(scope.$index, scope.row)">处理</el-button>
+                          <el-button
+                            size="mini"
+                            type="danger"
+                            @click="handleDelete(scope.$index, scope.row)">忽略</el-button>
+                        </template>
+                      </el-table-column>
+                  </el-table>
+                  <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="400">
+                  </el-pagination>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="plugins/vue.js"></script>
+    <script src="plugins/element.js"></script>
+    <script src="plugins/axios.min.js"></script>
+    <script src="plugins/echarts.min.js"></script>
+    <script>
+        document.write("<script src='js/warning.js?time="+new Date().getTime()+"'><\/script>");
+    </script>
+</body>
+</html>

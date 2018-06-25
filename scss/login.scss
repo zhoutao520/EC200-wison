@@ -1,0 +1,83 @@
+@function pxToRem($px) {
+    @return $px / 100 * 1rem;
+}
+#app{
+    position: relative;
+    height: 100%;
+    background-image: url('../img/login.gif');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-size: 16px;
+    font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+    .box{
+        position: absolute;
+        width: pxToRem(300);
+        right: 15%;
+        top: 25%;
+        background: rgba(43, 103, 142, 0.3);
+        border-radius: pxToRem(10);
+        box-shadow: 0px 0px 10px #5d7b9a;
+        h1{
+            font-size: pxToRem(30);
+            text-align: center;
+            color: white;
+            margin-top: pxToRem(30);
+        }
+        .login{
+            margin-top: pxToRem(30);
+            label{
+                display:block;
+                margin-top: pxToRem(20);
+                text-align: center;
+                color: white;
+            }
+            i{
+                margin-right: pxToRem(15);
+                vertical-align: middle;
+                font-size: pxToRem(18);
+                color: #fff;
+            }
+            input{
+                background: transparent;
+                width: pxToRem(180);
+                border: 1px solid #6b869f;
+                padding: pxToRem(5);
+                border-radius: 3px;
+                vertical-align: middle;
+                color: white;
+            }
+            .check{
+                text-align: left;
+                margin-left: 14%;
+            }
+            .msg{
+                margin-top: pxToRem(10);
+                text-align: center;
+                font-size: 12px;
+                color: red;
+                i{
+                    font-size: 12px;
+                    margin-right: 5px;
+                    color: red;
+                }
+            }
+        }
+        button{
+            background: -webkit-repeating-linear-gradient(-45deg, #0bbcd7, #00b5d0 pxToRem(20), #12abc2 pxToRem(20), #25a4b7 pxToRem(40), #00c2e0 pxToRem(40));
+            border: 0;
+            width: 80%;
+            height: pxToRem(30);
+            margin-left: 10%;
+            margin-top: pxToRem(20);
+            margin-bottom: pxToRem(20);
+            border-radius: 3px;
+            color: white;
+            opacity: 1;
+            cursor: pointer;
+            transition: opacity .4s;
+            &:hover{
+                background:-webkit-repeating-linear-gradient(-45deg, #12abc2, #25a4b7 pxToRem(20), #0bbcd7 pxToRem(20), #00b5d0 pxToRem(40), #00c2e0 pxToRem(40))
+            }
+        }
+    }
+} 

@@ -1,0 +1,61 @@
+@function pxToRem($px) {
+    @return $px / 100 * 1rem;
+}
+main{
+    background:#ecf0f5;
+    .content-header{
+        position: absolute;
+        li{
+            color: black; 
+        }
+    } 
+    .content{
+        height: pxToRem(531);
+        .warning-table{
+            height: pxToRem(300);
+            margin: pxToRem(15);
+            border-radius: 3px;
+        }
+        .warning{
+            height: pxToRem(200);
+            background: #4a4a4a;
+            margin: 0 pxToRem(15);
+            border-radius: 3px;
+            .top{
+                height: pxToRem(50);
+                line-height: pxToRem(50);
+                color: white;
+                >span{
+                    margin-left: pxToRem(15);
+                }
+                >button{
+                    padding: pxToRem(6) pxToRem(10);
+                    margin-left: pxToRem(20);
+                }
+                .el-input__inner{
+                    height: pxToRem(30);
+                    line-height: pxToRem(30);
+                }
+                .el-date-editor .el-range__icon{
+                    line-height: pxToRem(25);
+                }
+                .el-date-editor .el-range-separator{
+                    line-height: pxToRem(25);
+                }
+            }
+            .chart{
+                height: pxToRem(150);
+            }
+            #chartB{
+                width: pxToRem(400);
+                height: pxToRem(150);
+                display: inline-block;
+            }
+            #chartL{
+                width: pxToRem(700);
+                height: pxToRem(150);
+                display: inline-block;
+            }
+        }
+    }
+}

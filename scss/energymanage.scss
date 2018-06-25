@@ -1,0 +1,129 @@
+@function pxToRem($px) {
+    @return $px / 100 * 1rem;
+}
+.content{
+    background: #ecf0f5;
+    height: pxToRem(501);
+    overflow: hidden;
+    .type{
+        position: relative;
+        width: pxToRem(300);
+        height: pxToRem(220);
+        background: #fff;
+        border-radius: 6px;
+        float: left;
+        margin-left: pxToRem(35);
+        margin-top: pxToRem(25);
+        i{
+            position: absolute;
+            left: pxToRem(20);
+            top: pxToRem(15);
+             .icon{
+                width: pxToRem(30);
+                height: pxToRem(30);
+            }
+        }
+        .time{
+            position: absolute;
+            top: pxToRem(24);
+            right: pxToRem(20);
+            font-size: pxToRem(12);
+            cursor: pointer;
+            span{
+                margin-left: pxToRem(10);
+                padding: 3px;
+                border: 1px solid #1296db;
+                border-radius: 50%;
+            }
+        }
+        h4{
+            text-align: center;
+            margin: 0;
+            padding-top: pxToRem(20);
+            color: #7c82a5;
+            font-size: pxToRem(18);
+        }
+    }
+    .chartType{
+        width: pxToRem(300); 
+        height: pxToRem(180);
+    }
+    .headpiece{
+        width: pxToRem(1000);
+        height: pxToRem(50);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: pxToRem(30);
+        background: #cacaca;
+        border-radius: 3px;
+        line-height: pxToRem(50);
+        box-shadow: 0 2px 4px #000;
+        span{
+            margin: 0 pxToRem(20);
+        }
+        .form-control{
+            display: inline-block;
+            height: auto;
+            width: auto;
+        }
+        button{
+            margin-left: pxToRem(10);
+        }
+        .radio-inline{
+            line-height: normal;
+        }
+        .btn-date{
+            display: inline-block;
+            background: #fff;
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            input{
+                border: none;
+            }
+        }
+    }
+    .energy-chart{
+        width: pxToRem(1000);
+        height: pxToRem(290);
+        background: white;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: pxToRem(30);
+        border-radius: 3px;
+        box-shadow: 0 0 10px #007bfa;
+        #energyCenter{
+            width: 100%;
+            height: 100%;
+        }
+        .analysis{
+            width: pxToRem(300);
+            height: pxToRem(173);
+            margin-left: pxToRem(25);
+            margin-top: pxToRem(20);
+        }
+    }
+}
+.data-select{
+    width: 100%;
+    height: pxToRem(40);
+    margin-top: pxToRem(40);
+    background: #ddd;
+    padding: pxToRem(10) pxToRem(20);
+    .block{
+        display: inline-block;
+        margin-left: pxToRem(20);
+    }
+    button{
+        margin-left: pxToRem(20);
+    }
+}
+#floorTem{
+    height: pxToRem(500);
+}
+#heat{
+    height: pxToRem(500);
+}
+#analysisHeat{
+    height: pxToRem(500);
+}
